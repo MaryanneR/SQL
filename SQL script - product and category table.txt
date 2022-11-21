@@ -1,0 +1,57 @@
+/* Create product table */
+
+CREATE TABLE products (
+    product_id varchar(5),
+    product_name varchar(100),
+    category varchar(50),
+    subcategory varchar(50)
+   );
+   
+   
+/* Select distinct entries in category column,
+	Separate distinct query into separate table 'category' */  
+
+SELECT * FROM products  
+
+SELECT distinct 
+category
+FROM products
+
+
+SELECT distinct 
+category
+into category
+FROM products
+
+
+select category 
+from category
+
+
+/* Add in category_id column, 
+	Move category_id column in front of category column */
+
+select 
+category 
+,row_number() over (order by category)
+from category
+
+
+select 
+row_number() over (order by category) as category_id
+,category 
+into category
+from category
+
+
+select 
+row_number() over (order by category) as category_id
+,category 
+into category_table
+from category
+
+
+/* Select * to double-check new category_table table */
+
+select * from
+category_table
